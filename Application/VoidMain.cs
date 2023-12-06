@@ -9,7 +9,7 @@ namespace VoidMain
     {
         public static void Main(string[] args)
         {
-            WriteLine("Hello, Sucker!");
+            WriteLine("Hello, Fuckers!");
         }
     }
 }
