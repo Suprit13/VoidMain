@@ -7,8 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   
-  <ItemGroup>
-    <EmbeddedResource Include="..\API\**\*.cs" LinkBase="API" />
-  </ItemGroup>
-
 </Project>
