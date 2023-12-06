@@ -1,7 +1,7 @@
 // Main Program begins here...
 
 using System;
-using static System.Console;
+using VoidMainAPI;
 
 namespace VoidMain
 {
@@ -9,7 +9,10 @@ namespace VoidMain
     {
         public static void Main(string[] args)
         {
-            WriteLine("Hello, Fuckers!");
+            SourceCode application = new();
+            application.FunctionAPI();
+            
+            Environment.Exit(0);
         }
     }
 }
