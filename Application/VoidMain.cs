@@ -8,14 +8,9 @@ namespace VoidMain
   {
     public static void Main(string[] args)
     {
-
-    
-
-            Console.WriteLine("Hello, World!");
+      Console.WriteLine("Hello, World!");
             
-            Environment.Exit(0);
-
-
+      Environment.Exit(0);
     }
   }
 }
