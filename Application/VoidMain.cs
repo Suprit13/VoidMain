@@ -5,11 +5,12 @@ using static System.Console;
 
 namespace VoidMain
 {
-    public sealed class VoidMain
+  public sealed class VoidMain
+  {
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            WriteLine("Hello, Bruh!");
-        }
+      WriteLine("Hello, Bruh!");
+      WriteLine("Replit Test");
     }
+  }
 }
