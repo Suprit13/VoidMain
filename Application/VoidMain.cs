@@ -1,7 +1,6 @@
 // Main Program begins here...
 
 using System;
-using static System.Console;
 
 namespace VoidMain
 {
@@ -9,8 +8,14 @@ namespace VoidMain
   {
     public static void Main(string[] args)
     {
-      WriteLine("Hello, Bruh!");
-      WriteLine("Replit Test");
+
+    
+
+            Console.WriteLine("Hello, World!");
+            
+            Environment.Exit(0);
+
+
     }
   }
 }
