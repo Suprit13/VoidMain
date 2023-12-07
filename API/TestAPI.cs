@@ -16,5 +16,7 @@ namespace VoidMainAPI
         }
 
         public void PrintAPIState() => Console.WriteLine($"{builtCondition}\nBuild Code: {builtCode}");
+
+        public string CheckNumberType(in int data) => CheckNumbers.CheckNumber(in data);
     }
 }

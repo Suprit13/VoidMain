@@ -7,12 +7,30 @@ internal sealed class CheckNumbers
 {
     internal static string CheckNumber(in int data)
     {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new();
+        string[] checkArr = {"Palindrome", "Duck", "Even", "Prime", "Harshad", "Armstrong", "Neon"};
+
+        DoStringOperations(sb, checkArr[0], IsPalindromeNumber(in data));
+        DoStringOperations(sb, checkArr[1], IsDuckNumber(data));
+        DoStringOperations(sb, checkArr[2], IsEvenNumber(in data));
+        DoStringOperations(sb, checkArr[3], IsPrimeNumber(in data));
+        DoStringOperations(sb, checkArr[4], IsHarshadNumber(in data));
+        DoStringOperations(sb, checkArr[5], IsArmstrongNumber(in data));
+        DoStringOperations(sb, checkArr[6], IsNeonNumber(in data));
+
         return sb.ToString();
     }
 
+    private static void DoStringOperations(StringBuilder sb, string txt, in bool checkedVal)
+    {
+        if (checkedVal)
+            sb.Append($"{txt}: True\n");
+        else
+            sb.Append($"{txt}: False\n");
+    }
+
     // Check for Palindrome:
-    private static bool isPalindromeNumber(in int data)
+    private static bool IsPalindromeNumber(in int data)
     {
         int xerox = data;
         int rev = 0;
@@ -31,7 +49,7 @@ internal sealed class CheckNumbers
     }
 
     // Check for Duck:
-    private static bool isDuckNumber(int data)
+    private static bool IsDuckNumber(int data)
     {
         while (data > 0)
         {
@@ -46,7 +64,7 @@ internal sealed class CheckNumbers
     }
 
     // Check for Even:
-    private static bool isEvenNumber(in int data)
+    private static bool IsEvenNumber(in int data)
     {
         if (data % 2 == 0)
             return true;
@@ -55,7 +73,7 @@ internal sealed class CheckNumbers
     }
 
     // Check for Prime:
-    private static bool isPrimeNumber(in int data)
+    private static bool IsPrimeNumber(in int data)
     {
         for (int i = 2; i <= data / 2; i++)
             if (data % i == 0)
@@ -65,7 +83,7 @@ internal sealed class CheckNumbers
     }
 
     // Check for Harshad:
-    private static bool isHarshadNumber(in int data)
+    private static bool IsHarshadNumber(in int data)
     {
         int xerox = data;
         int sum = 0;
@@ -84,7 +102,7 @@ internal sealed class CheckNumbers
     }
 
     // Check for Armstrong:
-    private static bool isArmstrongNumber(in int data)
+    private static bool IsArmstrongNumber(in int data)
     {
         int xerox = data;
         int sum = 0;
@@ -103,7 +121,7 @@ internal sealed class CheckNumbers
     }
 
     // Check for Neon:
-    private static bool isNeonNumber(in int data)
+    private static bool IsNeonNumber(in int data)
     {
         int square = (int)Math.Pow(data, 2);
         int sum = 0;
