@@ -1,5 +1,10 @@
-internal enum ExitCode
+// Exit codes:
+
+namespace VoidMain
 {
-    ExitSuccess = 0,
-    ExitFailure = 1
+    internal enum ExitCode
+    {
+        ExitSuccess = 0,
+        ExitFailure = 1
+    }
 }
