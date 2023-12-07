@@ -9,7 +9,7 @@ namespace VoidMain
     {
         internal static int Main(string[] args)
         {
-            TestAPI api = new TestAPI();
+            TestAPI api = new();
             api.PrintAPIState();
 
             return (int)ExitCode.ExitSuccess;
