@@ -34,17 +34,17 @@ namespace VoidMainAPI
         // Check for Palindrome:
         private static bool IsPalindromeNumber(in int data)
         {
-            int xerox = data;
-            int rev = 0;
+            int copy = data;
+            int reverse = 0;
 
             while (xerox > 0)
             {
-                int d = xerox % 10;
-                rev = rev * 10 + d;
-                xerox /= 10;
+                int d = copy % 10;
+                reverse = reverse * 10 + d;
+                copy /= 10;
             }
 
-            if (rev == data)
+            if (reverse == data)
                 return true;
             else
                 return false;
