@@ -5,14 +5,14 @@ using VoidMainAPI;
 
 namespace VoidMain
 {
-  public sealed class VoidMain
-  {
-    public static void Main(string[] args)
+    public sealed class VoidMain
     {
-      TestAPI api = new TestAPI();
-      api.PrintAPIState();
-            
-      Environment.Exit(0);
+        public static void Main(string[] args)
+        {
+            TestAPI api = new TestAPI();
+            api.PrintAPIState();
+
+            Environment.Exit(0);
+        }
     }
-  }
 }
