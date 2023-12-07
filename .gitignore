@@ -400,5 +400,3 @@ FodyWeavers.xsd
 # Replit
 .replit
 *.nix
-
-.vscode
