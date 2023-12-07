@@ -6,7 +6,7 @@ namespace VoidMain
 {
     internal sealed class VoidMain
     {
-        internal static int Main(string[] args)
+        internal static int Main()
         {
             TestAPI api = new();
             api.PrintAPIState();
