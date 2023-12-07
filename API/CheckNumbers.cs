@@ -37,7 +37,7 @@ namespace VoidMainAPI
             int copy = data;
             int reverse = 0;
 
-            while (xerox > 0)
+            while (copy > 0)
             {
                 int d = copy % 10;
                 reverse = reverse * 10 + d;
