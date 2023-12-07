@@ -3,139 +3,142 @@
 using System;
 using System.Text;
 
-internal sealed class CheckNumbers
+namespace VoidMainAPI
 {
-    internal static string CheckNumber(in int data)
+    internal sealed class CheckNumbers
     {
-        StringBuilder sb = new();
-        string[] checkArr = {"Palindrome", "Duck", "Even", "Prime", "Harshad", "Armstrong", "Neon"};
-
-        DoStringOperations(sb, checkArr[0], IsPalindromeNumber(in data));
-        DoStringOperations(sb, checkArr[1], IsDuckNumber(data));
-        DoStringOperations(sb, checkArr[2], IsEvenNumber(in data));
-        DoStringOperations(sb, checkArr[3], IsPrimeNumber(in data));
-        DoStringOperations(sb, checkArr[4], IsHarshadNumber(in data));
-        DoStringOperations(sb, checkArr[5], IsArmstrongNumber(in data));
-        DoStringOperations(sb, checkArr[6], IsNeonNumber(in data));
-
-        return sb.ToString();
-    }
-
-    private static void DoStringOperations(StringBuilder sb, string txt, in bool checkedVal)
-    {
-        if (checkedVal)
-            sb.Append($"{txt}: True\n");
-        else
-            sb.Append($"{txt}: False\n");
-    }
-
-    // Check for Palindrome:
-    private static bool IsPalindromeNumber(in int data)
-    {
-        int xerox = data;
-        int rev = 0;
-
-        while (xerox > 0)
+        internal static string CheckNumber(in int data)
         {
-            int d = xerox % 10;
-            rev = rev * 10 + d;
-            xerox /= 10;
+            StringBuilder sb = new();
+            string[] checkArr = { "Palindrome", "Duck", "Even", "Prime", "Harshad", "Armstrong", "Neon" };
+
+            DoStringOperations(sb, checkArr[0], IsPalindromeNumber(in data));
+            DoStringOperations(sb, checkArr[1], IsDuckNumber(data));
+            DoStringOperations(sb, checkArr[2], IsEvenNumber(in data));
+            DoStringOperations(sb, checkArr[3], IsPrimeNumber(in data));
+            DoStringOperations(sb, checkArr[4], IsHarshadNumber(in data));
+            DoStringOperations(sb, checkArr[5], IsArmstrongNumber(in data));
+            DoStringOperations(sb, checkArr[6], IsNeonNumber(in data));
+
+            return sb.ToString();
         }
 
-        if (rev == data)
-            return true;
-        else
-            return false;
-    }
-
-    // Check for Duck:
-    private static bool IsDuckNumber(int data)
-    {
-        while (data > 0)
+        private static void DoStringOperations(StringBuilder sb, string txt, in bool checkedVal)
         {
-            int d = data % 10;
-            data /= 10;
-
-            if (d == 0)
-            return true;
+            if (checkedVal)
+                sb.Append($"{txt}: True\n");
+            else
+                sb.Append($"{txt}: False\n");
         }
 
-        return false;
-    }
+        // Check for Palindrome:
+        private static bool IsPalindromeNumber(in int data)
+        {
+            int xerox = data;
+            int rev = 0;
 
-    // Check for Even:
-    private static bool IsEvenNumber(in int data)
-    {
-        if (data % 2 == 0)
-            return true;
-        else
-            return false;
-    }
+            while (xerox > 0)
+            {
+                int d = xerox % 10;
+                rev = rev * 10 + d;
+                xerox /= 10;
+            }
 
-    // Check for Prime:
-    private static bool IsPrimeNumber(in int data)
-    {
-        for (int i = 2; i <= data / 2; i++)
-            if (data % i == 0)
+            if (rev == data)
+                return true;
+            else
                 return false;
-
-        return true;
-    }
-
-    // Check for Harshad:
-    private static bool IsHarshadNumber(in int data)
-    {
-        int xerox = data;
-        int sum = 0;
-
-        while (xerox > 0)
-        {
-            int d = xerox % 10;
-            sum += d;
-            xerox /= 10;
         }
 
-        if (data % sum == 0)
-            return true;
-        else
-            return false;
-    }
-
-    // Check for Armstrong:
-    private static bool IsArmstrongNumber(in int data)
-    {
-        int xerox = data;
-        int sum = 0;
-
-        while (xerox > 0)
+        // Check for Duck:
+        private static bool IsDuckNumber(int data)
         {
-            int d = xerox % 10;
-            sum += (int)Math.Pow(d, 3);
-            xerox /= 10;
+            while (data > 0)
+            {
+                int d = data % 10;
+                data /= 10;
+
+                if (d == 0)
+                    return true;
+            }
+
+            return false;
         }
 
-        if (sum == data)
-            return true;
-        else
-            return false;
-    }
-
-    // Check for Neon:
-    private static bool IsNeonNumber(in int data)
-    {
-        int square = (int)Math.Pow(data, 2);
-        int sum = 0;
-
-        while (square > 0)
+        // Check for Even:
+        private static bool IsEvenNumber(in int data)
         {
-            int d = square % 10;
-            sum += d;
-            square /= 10;
+            if (data % 2 == 0)
+                return true;
+            else
+                return false;
         }
 
-        if (sum == data)
+        // Check for Prime:
+        private static bool IsPrimeNumber(in int data)
+        {
+            for (int i = 2; i <= data / 2; i++)
+                if (data % i == 0)
+                    return false;
+
             return true;
-        else
-            return false;
+        }
+
+        // Check for Harshad:
+        private static bool IsHarshadNumber(in int data)
+        {
+            int xerox = data;
+            int sum = 0;
+
+            while (xerox > 0)
+            {
+                int d = xerox % 10;
+                sum += d;
+                xerox /= 10;
+            }
+
+            if (data % sum == 0)
+                return true;
+            else
+                return false;
+        }
+
+        // Check for Armstrong:
+        private static bool IsArmstrongNumber(in int data)
+        {
+            int xerox = data;
+            int sum = 0;
+
+            while (xerox > 0)
+            {
+                int d = xerox % 10;
+                sum += (int)Math.Pow(d, 3);
+                xerox /= 10;
+            }
+
+            if (sum == data)
+                return true;
+            else
+                return false;
+        }
+
+        // Check for Neon:
+        private static bool IsNeonNumber(in int data)
+        {
+            int square = (int)Math.Pow(data, 2);
+            int sum = 0;
+
+            while (square > 0)
+            {
+                int d = square % 10;
+                sum += d;
+                square /= 10;
+            }
+
+            if (sum == data)
+                return true;
+            else
+                return false;
+        }
     }
 }
