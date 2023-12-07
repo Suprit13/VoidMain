@@ -6,16 +6,17 @@ namespace VoidMainAPI
 {
     public sealed class TestAPI
     {
-        private string builtCondition;
+        private readonly string buildCondition;
+        private readonly int buildCode;
 
         public TestAPI()
         {
-            builtCondition = "API constructed successfully!";
+            buildCondition = "API constructed successfully!";
+            buildCode = 0;
         }
 
-        public void PrintAPIState()
-        {
-            Console.WriteLine(builtCondition);
-        }
+        public void PrintAPIState() => Console.WriteLine($"{buildCondition}\nBuild Code: {buildCode}\n");
+
+        public static string CheckNumberType(in int data) => CheckNumbers.CheckNumber(in data);
     }
 }
