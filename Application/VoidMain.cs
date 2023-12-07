@@ -1,6 +1,7 @@
 // Main Program begins here...
 
 using System;
+using VoidMainAPI;
 
 namespace VoidMain
 {
@@ -8,7 +9,8 @@ namespace VoidMain
   {
     public static void Main(string[] args)
     {
-      Console.WriteLine("Hello, World!");
+      TestAPI api = new TestAPI();
+      api.PrintAPIState();
             
       Environment.Exit(0);
     }
