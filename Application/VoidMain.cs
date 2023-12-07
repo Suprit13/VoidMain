@@ -7,12 +7,12 @@ namespace VoidMain
 {
     internal sealed class VoidMain
     {
-        internal static void Main(string[] args)
+        internal static int Main(string[] args)
         {
             TestAPI api = new TestAPI();
             api.PrintAPIState();
 
-            Environment.Exit(0);
+            return (int)ExitCode.ExitSuccess;
         }
     }
 }
