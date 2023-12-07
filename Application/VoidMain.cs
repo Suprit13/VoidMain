@@ -5,9 +5,9 @@ using VoidMainAPI;
 
 namespace VoidMain
 {
-    public sealed class VoidMain
+    internal sealed class VoidMain
     {
-        public static void Main(string[] args)
+        internal static void Main(string[] args)
         {
             TestAPI api = new TestAPI();
             api.PrintAPIState();
