@@ -39,8 +39,8 @@ namespace VoidMainAPI
 
             while (copy > 0)
             {
-                int d = copy % 10;
-                reverse = reverse * 10 + d;
+                int digit = copy % 10;
+                reverse = reverse * 10 + digit;
                 copy /= 10;
             }
 
@@ -55,10 +55,10 @@ namespace VoidMainAPI
         {
             while (data > 0)
             {
-                int d = data % 10;
+                int digit = data % 10;
                 data /= 10;
 
-                if (d == 0)
+                if (digit == 0)
                     return true;
             }
 
@@ -92,8 +92,8 @@ namespace VoidMainAPI
 
             while (xerox > 0)
             {
-                int d = xerox % 10;
-                sum += d;
+                int digit = xerox % 10;
+                sum += digit;
                 xerox /= 10;
             }
 
@@ -111,8 +111,8 @@ namespace VoidMainAPI
 
             while (xerox > 0)
             {
-                int d = xerox % 10;
-                sum += (int)Math.Pow(d, 3);
+                int digit = xerox % 10;
+                sum += (int)Math.Pow(digit, 3);
                 xerox /= 10;
             }
 
@@ -130,8 +130,8 @@ namespace VoidMainAPI
 
             while (square > 0)
             {
-                int d = square % 10;
-                sum += d;
+                int digit = square % 10;
+                sum += digit;
                 square /= 10;
             }
 
