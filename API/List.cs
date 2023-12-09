@@ -4,43 +4,59 @@ namespace VoidMainAPI
 {
     public sealed class List<T>
     {
-        private T[] arr;
-        private int c;
+        // Internal array of the List class
+        private T[] array;
+        // Count of the elements filled in the array
+        private long count;
 
-        List()
+        // Default constructor
+        public List()
         {
-            arr = new T[10];
+            array = new T[10];
         }
 
+        // Initializes the internal array with a specified size
+        public List(long size)
+        {
+            array = new T[size];
+        }
+
+        // Adds element at the end of the List
         public void Add(T element)
         {
-            int lastIndex;
+            long lastIndex = count - 1;
 
-            foreach (var _ in arr)
-                c++;
+            if (count >= array.Length)
+                array = new T[array.Length + (int)(0.5 * array.Length)];
 
-            lastIndex = c - 1;
-
-            if (c == arr.Length)
-                arr = new T[arr.Length + 5];
-
-            arr[lastIndex + 1] = element;
+            array[lastIndex + 1] = element;
+            ++count;
         }
 
-        public void Insert(int index, T element) => arr[index] = element;
-
-        public void RemoveAt(int index)
+        // Inserts element at a specified index
+        public void Insert(long index, T element)
         {
-            foreach (var _ in arr)
-                c++;
+            if (index > count - 1)
+                throw new IndexOutOfRangeException($"Cannot insert element at index {index} into a List of size {count}");
+            array[index] = element;
+        }
 
-            for (int i = index; i < c; i++)
-                arr[i] = arr[i + 1];
+        // Removes element at a specified index
+        public void RemoveAt(long index)
+        {
+            if (count < 1)
+                throw new IndexOutOfRangeException($"Cannot remove element at index {index} from a List of size {count}");
+
+            for (long i = index; i < count; i++)
+                array[i] = array[i + 1];
+
+            --count;
         }
         
+        // Returns the internal array
         public T[] ToArray()
         {
-            return arr;
+            return array;
         }
     }
 }
