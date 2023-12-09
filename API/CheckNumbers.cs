@@ -166,7 +166,7 @@ namespace VoidMainAPI
                     int factor2 = digits[j]*(int)Math.Pow(10,NumberLength-2);
 
                     // combining the factors to check if they form the original number
-                    int combined = factor1*factor2;
+                    int combined = factor1+factor2;
 
                     if(combined*(data/combined)== data)
                     return true;
