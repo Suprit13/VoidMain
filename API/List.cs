@@ -12,6 +12,8 @@ namespace VoidMainAPI
         
         // Return the count of the elements present in the List
         public long Count => count;
+        // Return the length of the internal array
+        public long ArrayLength => array.Length;
 
         // Default constructor
         public List()
