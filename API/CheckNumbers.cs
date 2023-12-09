@@ -150,8 +150,6 @@ namespace VoidMainAPI
             string NumberString = data.ToString();
             int NumberLength = NumberString.Length;
 
-            if(NumberLength%2!= 0){return false;}
-
         // convert the number to an array of digits
             int[] digits = NumberString.Select(c => int.Parse(c.ToString())).ToArray();
 
