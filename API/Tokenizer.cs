@@ -11,55 +11,16 @@ namespace VoidMainAPI
       
     }
     
-    private char Peek(string program, in ulong currentOffset, in long offset = 0) => program[currentOffset + offset];
+    private char Peek(string program, in int currentOffset, in int offset = 0) => program[currentOffset + offset];
     
     private bool IsOperator(in char ch)
     {
-      bool isOperator;
-
-      switch (ch)
-      {
-        case '!':
-        case '@':
-        case '#':
-        case '$':
-        case '%':
-        case '^':
-        case '&':
-        case '*':
-        case '(':
-        case ')':
-        case '-':
-        case '_':
-        case '+':
-        case '=':
-        case '{':
-        case '}':
-        case '|':
-        case '\\':
-        case '[':
-        case ']':
-        case ';':
-        case ':':
-        case '"':
-        case '\'':
-        case '<':
-        case '>':
-        case ',':
-        case '.':
-        case '/':
-        case '?':
-        case '`':
-        case '~':
-            isOperator = true;
-            break;
-
-        default:
-            isOperator = false;
-            break;
-      }
-
-        return isOperator;
+            var isOperator = ch switch
+            {
+                '!' or '@' or '#' or '$' or '%' or '^' or '&' or '*' or '(' or ')' or '-' or '_' or '+' or '=' or '{' or '}' or '|' or '\\' or '[' or ']' or ';' or ':' or '"' or '\'' or '<' or '>' or ',' or '.' or '/' or '?' or '`' or '~' => true,
+                _ => false,
+            };
+            return isOperator;
     }
   }
   
