@@ -2,17 +2,17 @@ using System;
 
 namespace VoidMainAPI
 {
-    internal sealed class List<T>
+    public sealed class List<T>
     {
-        T[] arr;
-        int c;
+        private T[] arr;
+        private int c;
 
         List()
         {
             arr = new T[10];
         }
 
-        void Add(T element)
+        public void Add(T element)
         {
             int lastIndex;
 
@@ -27,9 +27,9 @@ namespace VoidMainAPI
             arr[lastIndex + 1] = element;
         }
 
-        void Insert(int index, T element) => arr[index] = element;
+        public void Insert(int index, T element) => arr[index] = element;
 
-        void RemoveAt(int index)
+        public void RemoveAt(int index)
         {
             foreach (var _ in arr)
                 c++;
@@ -38,7 +38,7 @@ namespace VoidMainAPI
                 arr[i] = arr[i + 1];
         }
         
-        T[] ToArray()
+        public T[] ToArray()
         {
             return arr;
         }
