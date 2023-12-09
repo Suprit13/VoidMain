@@ -29,13 +29,18 @@ namespace VoidMainAPI
 
         void Insert(int index, T element) => arr[index] = element;
 
-        void Pop(int index)
+        void RemoveAt(int index)
         {
             foreach (var _ in arr)
                 c++;
 
             for (int i = index; i < c; i++)
                 arr[i] = arr[i + 1];
+        }
+        
+        T[] ToArray()
+        {
+            return arr;
         }
     }
 }
