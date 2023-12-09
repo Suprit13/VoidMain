@@ -16,7 +16,7 @@ namespace VoidMainAPI
     void Add(T element)
     {
       int lastIndex;
-      foreach(T var in arr)
+      foreach(T t in arr)
         c++;
       lastIndex = c - 1;
       if(c == arr.Length)
@@ -32,7 +32,7 @@ namespace VoidMainAPI
     
     void Pop(int index)
     {
-      foreach(T var in arr)
+      foreach(T t in arr)
         c++;
       for(int i = index; i < c; i++)
       {
