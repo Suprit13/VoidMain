@@ -9,6 +9,9 @@ namespace VoidMainAPI
         private T[] array;
         // Count of the elements filled in the array
         private long count;
+        
+        // Return the count of the elements present in the List
+        public long Count => count;
 
         // Default constructor
         public List()
