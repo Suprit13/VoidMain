@@ -27,7 +27,7 @@ namespace VoidMainAPI
             long lastIndex = count - 1;
 
             if (count >= array.Length)
-                array = new T[array.Length + (int)(0.5 * array.Length)];
+                array = new T[array.Length + (long)(0.5 * array.Length)];
 
             array[lastIndex + 1] = element;
             ++count;
