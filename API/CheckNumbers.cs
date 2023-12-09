@@ -1,6 +1,7 @@
 // Number Checking algoriths...
 
 using System;
+using System.Linq;
 using System.Text;
 
 namespace VoidMainAPI
@@ -10,7 +11,7 @@ namespace VoidMainAPI
         internal static string CheckNumber(in int data)
         {
             StringBuilder sb = new();
-            string[] checkArr = { "Palindrome", "Duck", "Even", "Prime", "Harshad", "Armstrong", "Neon" };
+            string[] checkArr = { "Palindrome", "Duck", "Even", "Prime", "Harshad", "Armstrong", "Neon", "Vampire" };
 
             DoStringOperations(sb, checkArr[0], IsPalindromeNumber(in data));
             DoStringOperations(sb, checkArr[1], IsDuckNumber(data));
@@ -19,6 +20,7 @@ namespace VoidMainAPI
             DoStringOperations(sb, checkArr[4], IsHarshadNumber(in data));
             DoStringOperations(sb, checkArr[5], IsArmstrongNumber(in data));
             DoStringOperations(sb, checkArr[6], IsNeonNumber(in data));
+            DoStringOperations(sb, checkArr[7], IsVampireNumber(in data));
 
             return sb.ToString();
         }
@@ -139,6 +141,38 @@ namespace VoidMainAPI
                 return true;
             else
                 return false;
+        }
+
+        // Chech for Vampire:
+        private static bool IsVampireNumber(in int data)
+        {
+            string NumberString = data.ToString();
+            int NumberLength = NumberString.Length;
+
+            if(data%2!= 0){return false;}
+            if(data<100){ return false;}
+
+        // convert the number to an array of digits
+            int[] digits = NumberString.Select(c => int.Parse(c.ToString())).ToArray();
+
+        // generate all possible pair of factors
+            for(int i = 0;i< NumberLength;i++)
+            {
+                for( int j=0;j<NumberLength;j++)
+                {
+                    if(i==j){continue;}
+
+                    int factor1 = digits[i]*(int)Math.Pow(10,NumberLength-1);
+                    int factor2 = digits[j]*(int)Math.Pow(10,NumberLength-2);
+
+                    // combining the factors to check if they form the original number
+                    int combined = factor1*factor2;
+
+                    if(combined*(data/combined)== data)
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
