@@ -144,8 +144,9 @@ namespace VoidMainAPI
         }
 
         // Chech for Vampire:
-        private static bool IsVampireNumber(in int data)
+        private static bool IsVampireNumber(int data)
         {
+            data = Math.Abs(data);
             string NumberString = data.ToString();
             int NumberLength = NumberString.Length;
 
