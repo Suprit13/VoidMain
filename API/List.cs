@@ -38,7 +38,7 @@ namespace VoidMainAPI
         public void Insert(long index, T element)
         {
             if (index > count - 1)
-                // // Throw a runtime error if attempted to insert an element into the outside of the List boundary
+                // // Throw a runtime error if attempted to insert an element at the outside of the List boundary
                 throw new IndexOutOfRangeException($"Cannot insert element at index '{index}' into a List of size '{count}'");
             array[index] = element;
         }
