@@ -162,16 +162,8 @@ namespace VoidMainAPI
                 {
                     if(i==j){continue;}
 
-                    int factor1 = digits[i]*(int)Math.Pow(10,NumberLength-1);
-
-                     int factor2 = 0;
-                 for (int k = 0; k < NumberLength; k++)
-                 {
-                  if (k != i && k != j)
-                    {
-                        factor2 += digits[k] * (int)Math.Pow(10, NumberLength - 2 - k + (k > i ? 1 : 0));
-                    }
-                 }
+                    int factor1 = digits[i]*(int)Math.Pow(10,i);
+                    int factor2 = digits[j]*(int)Math.Pow(10,j == 0 ? NumberLength - 2 : j - 1);
 
                     // combining the factors to check if they form the original number
                     int combined = factor1+factor2;
