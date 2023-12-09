@@ -6,7 +6,7 @@ namespace VoidMainAPI
 {
     internal class Tokenizer
     {
-        internal List<Token> Tokenize(string s)
+        internal Token[] Tokenize(string s)
         {
             return null;
         }
