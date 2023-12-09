@@ -150,7 +150,6 @@ namespace VoidMainAPI
             int NumberLength = NumberString.Length;
 
             if(data%2!= 0){return false;}
-            if(data<100){ return false;}
 
         // convert the number to an array of digits
             int[] digits = NumberString.Select(c => int.Parse(c.ToString())).ToArray();
@@ -162,8 +161,8 @@ namespace VoidMainAPI
                 {
                     if(i==j){continue;}
 
-                    int factor1 = digits[i]*(int)Math.Pow(10,NumberLength-1);
-                    int factor2 = digits[j]*(int)Math.Pow(10,NumberLength-2);
+                    int factor1 = digits[i]*(int)Math.Pow(10,i);
+                    int factor2 = digits[j]*(int)Math.Pow(10,j == 0 ? NumberLength - 2 : j - 1);
 
                     // combining the factors to check if they form the original number
                     int combined = factor1+factor2;
