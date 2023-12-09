@@ -20,7 +20,7 @@ namespace VoidMainAPI
             DoStringOperations(sb, checkArr[4], IsHarshadNumber(in data));
             DoStringOperations(sb, checkArr[5], IsArmstrongNumber(in data));
             DoStringOperations(sb, checkArr[6], IsNeonNumber(in data));
-            DoStringOperations(sb, checkArr[7], IsVampireNumber(in data));
+            DoStringOperations(sb, checkArr[7], IsVampireNumber(data));
 
             return sb.ToString();
         }
