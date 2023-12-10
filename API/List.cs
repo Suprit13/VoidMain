@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace VoidMainAPI
 {
@@ -15,7 +16,7 @@ namespace VoidMainAPI
         // Return the length of the internal array
         public int ArrayLength => array.Length;
 
-        // Default constructor
+        // Default constructor to initialize the internal array with a fixed size
         public List()
         {
             array = new T[10];
@@ -27,11 +28,17 @@ namespace VoidMainAPI
             array = new T[size];
         }
 
+        // Initialize the iternal array with a pre-made array/list (Enumerable)
+        public List(IEnumerable<T> list)
+        {
+            array = list.ToArray();
+        }
+
         // Adds element at the end of the List
         public void Add(T element)
         {
             if (count >= array.Length)
-                array = new T[array.Length + (long)(0.5 * array.Length)];
+                array = new T[array.Length + (int)(0.5 * array.Length)];
 
             array[count] = element;
             ++count;
