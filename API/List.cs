@@ -41,8 +41,11 @@ namespace VoidMainAPI
         public void Insert(int index, T element)
         {
             if (index > count - 1)
-                // // Throw a runtime error if attempted to insert an element at the outside of the List boundary
+                // Throw a runtime error if attempted to insert an element at the outside of the List boundary
                 throw new IndexOutOfRangeException($"Cannot insert element at index '{index}' into a List of size '{count}'");
+            else if (index < 0)
+                // Throw a runtime error if attempted to insert an element at the outside of the List boundary
+                throw new IndexOutOfRangeException($"Cannot insert element at index '{index}' into a List of starting index '0'");
 
             array[index] = element;
         }
@@ -55,7 +58,10 @@ namespace VoidMainAPI
                 throw new MissingFieldException($"Cannot remove element at index '{index}' from a List of size '{count}'");
             else if (count <= index)
                 // Throw a runtime error if attempted to remove an element from outside the List boundary
-                throw new MissingFieldException($"Cannot remove element at index '{index}' from a List of size '{count}'");
+                throw new IndexOutOfRangeException($"Cannot remove element at index '{index}' from a List of size '{count}'");
+            else if (index < 0)
+                // Throw a runtime error if attempted to remove an element from outside the List boundary
+                throw new IndexOutOfRangeException($"Cannot remove element at index '{index}' from a List of starting index '0'");
 
             for (int i = index; i < count; i++)
                 array[i] = array[i + 1];
