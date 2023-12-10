@@ -31,7 +31,10 @@ namespace VoidMainAPI
         // Initialize the iternal array with a pre-made array/list (Enumerable)
         public List(IEnumerable<T> list)
         {
-            array = list.ToArray();
+            if (list is T[] arr)
+                array = arr;
+            else
+                array = list.ToArray();
         }
 
         // Adds element at the end of the List
