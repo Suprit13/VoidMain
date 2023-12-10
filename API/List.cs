@@ -156,8 +156,8 @@ namespace VoidMainAPI
             else
             {
                 T[] newArray = new T[count];
-                for(int i = 0; i < count; i++)
-                    newArray[i] = array[i];
+                Array.Copy(array, newArray, count);
+                
                 return newArray;
             }
         }
