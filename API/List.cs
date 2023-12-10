@@ -11,7 +11,8 @@ namespace VoidMainAPI
         private T[] array;
         // Count of the elements filled in the array
         private int count;
-
+        
+        // Current index of the iterator
         private int currentIndex;
 
         // Return the count of the elements present in the List
