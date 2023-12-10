@@ -65,214 +65,64 @@ namespace VoidMainAPI
                 // Throw a runtime error if attempted to sort an empty List
                 throw new MissingFieldException($"Cannot sort a List of size '{count}'");
 
-            Sort(array);
+            Sort((dynamic)array);
         }
 
         // The most "what the fuck?" Method because there's no way to tell the compiler that they can be compared.
-        private void Sort(T[] array)
+        private void Sort(dynamic[] array)
         {
-
-            if (array is int[] arr)
+            try
             {
-                bool changed;
-
-                for (long i = 1; i < count - 1; i++)
+                if (array is string[])
                 {
-                    changed = false;
+                    bool changed;
 
-                    for (long j = 0; j < count - i; j++)
+                    for (long i = 1; i < count - 1; i++)
                     {
-                        if (arr[j] > arr[j + 1])
-                        {
-                            changed = true;
-                            // Using Tuple to swap values of the array
-                            (arr[j + 1], arr[j]) = (arr[j], arr[j + 1]);
-                        }
-                    }
+                        changed = false;
 
-                    if (!changed)
-                        return;
+                        for (long j = 0; j < count - i; j++)
+                        {
+                            if (array[j].CompareTo(array[j + 1]) > 0)
+                            {
+                                changed = true;
+                                // Using Tuple to swap values of the array
+                                (array[j + 1], array[j]) = (array[j], array[j + 1]);
+                            }
+                        }
+
+                        if (!changed)
+                            return;
+                    }
+                }
+                else
+                {
+                    bool changed;
+
+                    for (long i = 1; i < count - 1; i++)
+                    {
+                        changed = false;
+
+                        for (long j = 0; j < count - i; j++)
+                        {
+                            if (array[j] > array[j + 1])
+                            {
+                                changed = true;
+                                // Using Tuple to swap values of the array
+                                (array[j + 1], array[j]) = (array[j], array[j + 1]);
+                            }
+                        }
+
+                        if (!changed)
+                            return;
+                    }
                 }
             }
-            else if (array is short[] arrS)
+            catch
             {
-                bool changed;
-
-                for (long i = 1; i < count - 1; i++)
-                {
-                    changed = false;
-
-                    for (long j = 0; j < count - i; j++)
-                    {
-                        if (arrS[j] > arrS[j + 1])
-                        {
-                            changed = true;
-                            // Using Tuple to swap values of the array
-                            (arrS[j + 1], arrS[j]) = (arrS[j], arrS[j + 1]);
-                        }
-                    }
-
-                    if (!changed)
-                        return;
-                }
-            }
-            else if (array is byte[] arrB)
-            {
-                bool changed;
-
-                for (long i = 1; i < count - 1; i++)
-                {
-                    changed = false;
-
-                    for (long j = 0; j < count - i; j++)
-                    {
-                        if (arrB[j] > arrB[j + 1])
-                        {
-                            changed = true;
-                            // Using Tuple to swap values of the array
-                            (arrB[j + 1], arrB[j]) = (arrB[j], arrB[j + 1]);
-                        }
-                    }
-
-                    if (!changed)
-                        return;
-                }
-            }
-            else if (array is char[] arrC)
-            {
-                bool changed;
-
-                for (long i = 1; i < count - 1; i++)
-                {
-                    changed = false;
-
-                    for (long j = 0; j < count - i; j++)
-                    {
-                        if (arrC[j] > arrC[j + 1])
-                        {
-                            changed = true;
-                            // Using Tuple to swap values of the array
-                            (arrC[j + 1], arrC[j]) = (arrC[j], arrC[j + 1]);
-                        }
-                    }
-
-                    if (!changed)
-                        return;
-                }
-            }
-            else if (array is long[] arrL)
-            {
-                bool changed;
-
-                for (long i = 1; i < count - 1; i++)
-                {
-                    changed = false;
-
-                    for (long j = 0; j < count - i; j++)
-                    {
-                        if (arrL[j] > arrL[j + 1])
-                        {
-                            changed = true;
-                            // Using Tuple to swap values of the array
-                            (arrL[j + 1], arrL[j]) = (arrL[j], arrL[j + 1]);
-                        }
-                    }
-
-                    if (!changed)
-                        return;
-                }
-            }
-            else if (array is float[] arrF)
-            {
-                bool changed;
-
-                for (long i = 1; i < count - 1; i++)
-                {
-                    changed = false;
-
-                    for (long j = 0; j < count - i; j++)
-                    {
-                        if (arrF[j] > arrF[j + 1])
-                        {
-                            changed = true;
-                            // Using Tuple to swap values of the array
-                            (arrF[j + 1], arrF[j]) = (arrF[j], arrF[j + 1]);
-                        }
-                    }
-
-                    if (!changed)
-                        return;
-                }
-            }
-            else if (array is double[] arrD)
-            {
-                bool changed;
-
-                for (long i = 1; i < count - 1; i++)
-                {
-                    changed = false;
-
-                    for (long j = 0; j < count - i; j++)
-                    {
-                        if (arrD[j] > arrD[j + 1])
-                        {
-                            changed = true;
-                            // Using Tuple to swap values of the array
-                            (arrD[j + 1], arrD[j]) = (arrD[j], arrD[j + 1]);
-                        }
-                    }
-
-                    if (!changed)
-                        return;
-                }
-            }
-            else if (array is decimal[] arrDe)
-            {
-                bool changed;
-
-                for (long i = 1; i < count - 1; i++)
-                {
-                    changed = false;
-
-                    for (long j = 0; j < count - i; j++)
-                    {
-                        if (arrDe[j] > arrDe[j + 1])
-                        {
-                            changed = true;
-                            // Using Tuple to swap values of the array
-                            (arrDe[j + 1], arrDe[j]) = (arrDe[j], arrDe[j + 1]);
-                        }
-                    }
-
-                    if (!changed)
-                        return;
-                }
-            }
-            else if (array is string[] arrStr)
-            {
-                bool changed;
-
-                for (long i = 1; i < count - 1; i++)
-                {
-                    changed = false;
-
-                    for (long j = 0; j < count - i; j++)
-                    {
-                        if (arrStr[j].CompareTo(arrStr[j + 1]) > 0)
-                        {
-                            changed = true;
-                            // Using Tuple to swap values of the array
-                            (arrStr[j + 1], arrStr[j]) = (arrStr[j], arrStr[j + 1]);
-                        }
-                    }
-
-                    if (!changed)
-                        return;
-                }
-            }
-            else
                 // Throw a runtime error if the Type is not one of the primitive types
                 throw new NotSupportedException($"Cannot sort a List of type '{typeof(T)}'");
+            }
         }
 
         // Returns the internal array
