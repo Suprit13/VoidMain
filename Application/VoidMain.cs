@@ -12,13 +12,10 @@ namespace VoidMain
             TestAPI api = new();
             api.PrintAPIState();
 
-            List<int> list = new() {1, 2, 3};
-            list.Insert(1, 5);
+            List<int> list = new() {9, 2, 3, 7, 4, 2, 1, 0};
+            list.Sort();
 
-            foreach(var num in list)
-            {
-                Console.WriteLine(num);
-            }
+            Console.WriteLine(list.Search(3));
 
             // Console.Write("Input a number: ");
             // Console.WriteLine("\n" + TestAPI.CheckNumberType(Convert.ToInt32(Console.ReadLine())));

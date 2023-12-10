@@ -13,7 +13,7 @@ namespace VoidMainAPI
         private int count;
 
         private int currentIndex;
-        
+
         // Return the count of the elements present in the List
         public int Count => count;
         // Return the length of the internal array
@@ -124,73 +124,76 @@ namespace VoidMainAPI
                 // Throw a runtime error if attempted to sort an empty List
                 throw new MissingFieldException($"Cannot sort a List of size '{count}'");
 
-            Sort((dynamic)array);
+            Sort(array);
         }
 
         // The most "what the fuck?" Method because there's no way to tell the compiler that they can be compared.
-        private void Sort(dynamic[] array)
+        private void Sort(T[] array)
         {
             try
             {
-                if (array is string[])
+                // Bubble sort
+                // TODO: Change the sorting algorithm into a much faster sort based on the elements count
+
+                bool changed;
+
+                for (int i = 1; i < count; i++)
                 {
-                    // Bubble sort
-                    // TODO: Change the sorting algorithm into a much faster sort based on the elements count
+                    changed = false;
 
-                    bool changed;
+                    for (int j = 0; j < count - i; j++)
+                        if (Comparer<T>.Default.Compare(array[j], array[j + 1]) > 0)
+                            Swap(ref changed, j);
 
-                    for (int i = 1; i < count - 1; i++)
-                    {
-                        changed = false;
-
-                        for (int j = 0; j < count - i; j++)
-                            if (array[j].CompareTo(array[j + 1]) > 0)
-                                Swap(ref changed, j);
-
-                        if (!changed)
-                            return;
-                    }
-                }
-                else
-                {
-                    // Bubble sort
-                    // TODO: Change the sorting algorithm into a much faster sort based on the elements count
-
-                    bool changed;
-
-                    for (int i = 1; i < count - 1; i++)
-                    {
-                        changed = false;
-
-                        for (int j = 0; j < count - i; j++)
-                            if (array[j] > array[j + 1])
-                                Swap(ref changed, j);
-
-                        if (!changed)
-                            return;
-                    }
+                    if (!changed)
+                        return;
                 }
             }
             catch
             {
-                // Throw a runtime error if the Type is not one of the primitive types
                 throw new NotSupportedException($"Cannot sort a List of type '{typeof(T)}'");
             }
 
-            // Local function to seperate the swap logic
-            void Swap(ref bool changed, in int j)
+            // Local function to separate the swap logic
+            void Swap(ref bool changed, in int index)
             {
                 changed = true;
                 // Using Tuple to swap values of the array
-                (array[j + 1], array[j]) = (array[j], array[j + 1]);
+                (array[index + 1], array[index]) = (array[index], array[index + 1]);
             }
         }
 
         // Return the index if found or return 0
-        public int Search(IComparable<T> data) => Search((dynamic)array, data);
+        public int Search(T data)
+        {
+            T[] array;
+
+            if (count == this.array.Length)
+                array = this.array;
+            else
+            {
+                array = new T[count];
+                Array.Copy(this.array, array, count);
+            }
+
+            return Search(array, data);
+        }
 
         // Return the index if found or return 0
-        public int Find(T data) => Find(array, data);
+        public int Find(T data)
+        {
+            T[] array;
+
+            if (count == this.array.Length)
+                array = this.array;
+            else
+            {
+                array = new T[count];
+                Array.Copy(this.array, array, count);
+            }
+
+            return Find(array, data);
+        }
 
         // Linear search
         private static int Find(T[] array, T data)
@@ -202,22 +205,22 @@ namespace VoidMainAPI
             return -1;
         }
 
-         // BinarySearch 
-        private static int Search(dynamic[] array, IComparable<T> data)
+        // BinarySearch 
+        private static int Search(T[] array, T data)
         {
-            int max = array.Length;
+            int max = array.Length - 1;
             int min = 0;
             int targetIndex;
 
-            IComparable<T> target;
-
             while (max >= min)
             {
-                targetIndex = min + (max - min) / 2;
-                target = array[targetIndex];
-                if (target == data)
+                targetIndex = min + ((max - min) / 2);
+                T target = array[targetIndex];
+                int comparisonResult = Comparer<T>.Default.Compare(target, data);
+
+                if (comparisonResult == 0)
                     return targetIndex;
-                else if (target.CompareTo((T?)data) < 0)
+                else if (comparisonResult < 0)
                     min = targetIndex + 1;
                 else
                     max = targetIndex - 1;
@@ -229,7 +232,7 @@ namespace VoidMainAPI
         // Returns the internal array
         public T[] ToArray()
         {
-            if(count == array.Length)
+            if (count == array.Length)
                 return array;
             else
             {
