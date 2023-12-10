@@ -240,30 +240,17 @@ namespace VoidMainAPI
             }
         }
 
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
-        {
-            return this;
-        }
+        IEnumerator<T> IEnumerable<T>.GetEnumerator() => this;
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this;
-        }
-
+        IEnumerator IEnumerable.GetEnumerator() => this;
         bool IEnumerator.MoveNext()
         {
             ++currentIndex;
             return currentIndex < count;
         }
 
-        void IEnumerator.Reset()
-        {
-            currentIndex = -1;
-        }
+        void IEnumerator.Reset() => currentIndex = -1;
 
-        void IDisposable.Dispose()
-        {
-            currentIndex = -1;
-        }
+        void IDisposable.Dispose() => currentIndex = -1;
     }
 }
