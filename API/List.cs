@@ -8,12 +8,12 @@ namespace VoidMainAPI
         // Internal array of the List class
         private T[] array;
         // Count of the elements filled in the array
-        private long count;
+        private int count;
         
         // Return the count of the elements present in the List
-        public long Count => count;
+        public int Count => count;
         // Return the length of the internal array
-        public long ArrayLength => array.Length;
+        public int ArrayLength => array.Length;
 
         // Default constructor
         public List()
@@ -22,7 +22,7 @@ namespace VoidMainAPI
         }
 
         // Initializes the internal array with a specified size
-        public List(long size)
+        public List(int size)
         {
             array = new T[size];
         }
@@ -30,17 +30,15 @@ namespace VoidMainAPI
         // Adds element at the end of the List
         public void Add(T element)
         {
-            long lastIndex = count - 1;
-
             if (count >= array.Length)
                 array = new T[array.Length + (long)(0.5 * array.Length)];
 
-            array[lastIndex + 1] = element;
+            array[count] = element;
             ++count;
         }
 
         // Inserts element at a specified index
-        public void Insert(long index, T element)
+        public void Insert(int index, T element)
         {
             if (index > count - 1)
                 // // Throw a runtime error if attempted to insert an element at the outside of the List boundary
@@ -50,7 +48,7 @@ namespace VoidMainAPI
         }
 
         // Removes element at a specified index
-        public void RemoveAt(long index)
+        public void RemoveAt(int index)
         {
             if (count < 1)
                 // Throw a runtime error if attempted to remove an element from an empty List
@@ -59,7 +57,7 @@ namespace VoidMainAPI
                 // Throw a runtime error if attempted to remove an element from outside the List boundary
                 throw new MissingFieldException($"Cannot remove element at index '{index}' from a List of size '{count}'");
 
-            for (long i = index; i < count; i++)
+            for (int i = index; i < count; i++)
                 array[i] = array[i + 1];
 
             --count;
@@ -87,11 +85,11 @@ namespace VoidMainAPI
 
                     bool changed;
 
-                    for (long i = 1; i < count - 1; i++)
+                    for (int i = 1; i < count - 1; i++)
                     {
                         changed = false;
 
-                        for (long j = 0; j < count - i; j++)
+                        for (int j = 0; j < count - i; j++)
                             if (array[j].CompareTo(array[j + 1]) > 0)
                                 Swap(ref changed, j);
 
@@ -106,11 +104,11 @@ namespace VoidMainAPI
 
                     bool changed;
 
-                    for (long i = 1; i < count - 1; i++)
+                    for (int i = 1; i < count - 1; i++)
                     {
                         changed = false;
 
-                        for (long j = 0; j < count - i; j++)
+                        for (int j = 0; j < count - i; j++)
                             if (array[j] > array[j + 1])
                                 Swap(ref changed, j);
 
@@ -126,7 +124,7 @@ namespace VoidMainAPI
             }
 
             // Local function to seperate the swap logic
-            void Swap(ref bool changed, in long j)
+            void Swap(ref bool changed, in int j)
             {
                 changed = true;
                 // Using Tuple to swap values of the array
