@@ -151,13 +151,19 @@ namespace VoidMainAPI
         // Returns the internal array
         public T[] ToArray()
         {
-            return array;
+            if(count == array.Length)
+                return array;
+            else
+            {
+                T newArray[] = new T[count];
+                return newArray;
+            }
         }
 
         // BinarySearch 
         private int Search(dynamic[] array, T data)
         {
-            
+          
         }
     }
 }
