@@ -153,5 +153,11 @@ namespace VoidMainAPI
         {
             return array;
         }
+
+        // BinarySearch 
+        private int Search(dynamic[] array, T data)
+        {
+            
+        }
     }
 }
