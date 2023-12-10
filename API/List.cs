@@ -78,9 +78,14 @@ namespace VoidMainAPI
         // Adds element at the end of the List
         public void Add(T element)
         {
-            if (count >= array.Length)
-                array = new T[array.Length + (int)(0.5 * array.Length)];
-
+            // Resizing the array
+            if (count == array.Length)
+            {
+                T[] newArray = new T[array.Length + (int)(0.5 * array.Length)];
+                Array.Copy(array, newArray, count);
+                array = newArray;
+            }
+                
             array[count] = element;
             ++count;
         }
@@ -110,6 +115,14 @@ namespace VoidMainAPI
             else if (index < 0)
                 // Throw a runtime error if attempted to remove an element from outside the List boundary
                 throw new IndexOutOfRangeException($"Cannot remove element at index '{index}' from a List of starting index '0'");
+
+            // Resizing the array
+            if (count < array.Length / 2)
+            {
+                T[] newArray = new T[array.Length - (int)(0.25 * array.Length)];
+                Array.Copy(array, newArray, count);
+                array = newArray;
+            }
 
             for (int i = index; i < count; i++)
                 array[i] = array[i + 1];
