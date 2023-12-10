@@ -155,7 +155,7 @@ namespace VoidMainAPI
                 return array;
             else
             {
-                T newArray[] = new T[count];
+                T[] newArray = new T[count];
                 return newArray;
             }
         }
