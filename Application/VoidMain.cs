@@ -12,8 +12,16 @@ namespace VoidMain
             TestAPI api = new();
             api.PrintAPIState();
 
-            Console.Write("Input a number: ");
-            Console.WriteLine("\n" + TestAPI.CheckNumberType(Convert.ToInt32(Console.ReadLine())));
+            List<int> list = new() {1, 2, 3};
+            list.Insert(1, 5);
+
+            foreach(var num in list)
+            {
+                Console.WriteLine(num);
+            }
+
+            // Console.Write("Input a number: ");
+            // Console.WriteLine("\n" + TestAPI.CheckNumberType(Convert.ToInt32(Console.ReadLine())));
 
             return (int)ExitCode.ExitSuccess;
         }

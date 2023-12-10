@@ -1,41 +1,79 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace VoidMainAPI
 {
-    public sealed class List<T>
+    public sealed class List<T> : IEnumerable<T>, IEnumerator<T>
     {
         // Internal array of the List class
         private T[] array;
         // Count of the elements filled in the array
         private int count;
+
+        private int currentIndex;
         
         // Return the count of the elements present in the List
         public int Count => count;
         // Return the length of the internal array
         public int ArrayLength => array.Length;
 
+        T IEnumerator<T>.Current => Get(currentIndex);
+
+        object IEnumerator.Current => Get(currentIndex)!;
+
+
         // Default constructor to initialize the internal array with a fixed size
         public List()
         {
+            currentIndex = -1;
             array = new T[10];
         }
 
         // Initializes the internal array with a specified size
         public List(int size)
         {
+            currentIndex = -1;
             array = new T[size];
         }
 
         // Initialize the iternal array with a pre-made array/list (Enumerable)
         public List(IEnumerable<T> list)
         {
+            currentIndex = -1;
+
             if (list is T[] arr)
                 array = arr;
             else
                 array = list.ToArray();
         }
+
+        // Indexer
+        public T this[int index]
+        {
+            get => Get(index);
+            set => Set(index, value);
+        }
+
+        // Get element from the List at specified index
+        public T Get(int index)
+        {
+            if (count < 1)
+                // Throw a runtime error if attempted to remove an element from an empty List
+                throw new MissingFieldException($"Cannot access element at index '{index}' from a List of size '{count}'");
+            else if (count <= index)
+                // Throw a runtime error if attempted to remove an element from outside the List boundary
+                throw new IndexOutOfRangeException($"Cannot access element at index '{index}' from a List of size '{count}'");
+            else if (index < 0)
+                // Throw a runtime error if attempted to remove an element from outside the List boundary
+                throw new IndexOutOfRangeException($"Cannot access element at index '{index}' from a List of starting index '0'");
+
+            return array[index];
+        }
+
+        // Set the element at specified index in the List
+        public void Set(int index, T element) => Insert(index, element);
 
         // Adds element at the end of the List
         public void Add(T element)
@@ -148,6 +186,46 @@ namespace VoidMainAPI
             }
         }
 
+        // Return the index if found or return 0
+        public int Search(IComparable<T> data) => Search((dynamic)array, data);
+
+        // Return the index if found or return 0
+        public int Find(T data) => Find(array, data);
+
+        // Linear search
+        private static int Find(T[] array, T data)
+        {
+            for (int i = 0; i < array.Length; i++)
+                if (array[i]!.Equals(data))
+                    return i;
+
+            return -1;
+        }
+
+         // BinarySearch 
+        private static int Search(dynamic[] array, IComparable<T> data)
+        {
+            int max = array.Length;
+            int min = 0;
+            int targetIndex;
+
+            IComparable<T> target;
+
+            while (max >= min)
+            {
+                targetIndex = min + (max - min) / 2;
+                target = array[targetIndex];
+                if (target == data)
+                    return targetIndex;
+                else if (target.CompareTo((T?)data) < 0)
+                    min = targetIndex + 1;
+                else
+                    max = targetIndex - 1;
+            }
+
+            return -1;
+        }
+
         // Returns the internal array
         public T[] ToArray()
         {
@@ -157,15 +235,35 @@ namespace VoidMainAPI
             {
                 T[] newArray = new T[count];
                 Array.Copy(array, newArray, count);
-                
+
                 return newArray;
             }
         }
 
-        // BinarySearch 
-        private int Search(dynamic[] array, T data)
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-          
+            return this;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this;
+        }
+
+        bool IEnumerator.MoveNext()
+        {
+            ++currentIndex;
+            return currentIndex < count;
+        }
+
+        void IEnumerator.Reset()
+        {
+            currentIndex = -1;
+        }
+
+        void IDisposable.Dispose()
+        {
+            currentIndex = -1;
         }
     }
 }
