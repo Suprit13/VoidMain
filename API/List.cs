@@ -58,7 +58,7 @@ namespace VoidMainAPI
             else if (count <= index)
                 // Throw a runtime error if attempted to remove an element from outside the List boundary
                 throw new MissingFieldException($"Cannot remove element at index '{index}' from a List of size '{count}'");
-                
+
             for (long i = index; i < count; i++)
                 array[i] = array[i + 1];
 
@@ -82,6 +82,9 @@ namespace VoidMainAPI
             {
                 if (array is string[])
                 {
+                    // Bubble sort
+                    // TODO: Change the sorting algorith into a much faster sort based on the elements count
+
                     bool changed;
 
                     for (long i = 1; i < count - 1; i++)
@@ -89,14 +92,8 @@ namespace VoidMainAPI
                         changed = false;
 
                         for (long j = 0; j < count - i; j++)
-                        {
                             if (array[j].CompareTo(array[j + 1]) > 0)
-                            {
-                                changed = true;
-                                // Using Tuple to swap values of the array
-                                (array[j + 1], array[j]) = (array[j], array[j + 1]);
-                            }
-                        }
+                                Swap(ref changed, j);
 
                         if (!changed)
                             return;
@@ -104,6 +101,9 @@ namespace VoidMainAPI
                 }
                 else
                 {
+                    // Bubble sort
+                    // TODO: Change the sorting algorith into a much faster sort based on the elements count
+
                     bool changed;
 
                     for (long i = 1; i < count - 1; i++)
@@ -111,14 +111,8 @@ namespace VoidMainAPI
                         changed = false;
 
                         for (long j = 0; j < count - i; j++)
-                        {
                             if (array[j] > array[j + 1])
-                            {
-                                changed = true;
-                                // Using Tuple to swap values of the array
-                                (array[j + 1], array[j]) = (array[j], array[j + 1]);
-                            }
-                        }
+                                Swap(ref changed, j);
 
                         if (!changed)
                             return;
@@ -129,6 +123,14 @@ namespace VoidMainAPI
             {
                 // Throw a runtime error if the Type is not one of the primitive types
                 throw new NotSupportedException($"Cannot sort a List of type '{typeof(T)}'");
+            }
+
+            // Local function to seperate the swap logic
+            void Swap(ref bool changed, in long j)
+            {
+                changed = true;
+                // Using Tuple to swap values of the array
+                (array[j + 1], array[j]) = (array[j], array[j + 1]);
             }
         }
 
