@@ -97,7 +97,7 @@ namespace VoidMainAPI
                 if (array is string[])
                 {
                     // Bubble sort
-                    // TODO: Change the sorting algorith into a much faster sort based on the elements count
+                    // TODO: Change the sorting algorithm into a much faster sort based on the elements count
 
                     bool changed;
 
@@ -116,7 +116,7 @@ namespace VoidMainAPI
                 else
                 {
                     // Bubble sort
-                    // TODO: Change the sorting algorith into a much faster sort based on the elements count
+                    // TODO: Change the sorting algorithm into a much faster sort based on the elements count
 
                     bool changed;
 
