@@ -18,9 +18,9 @@ namespace VoidMainAPI
         public int Count => count;
         // Return the length of the internal array
         public int ArrayLength => array.Length;
-
+        // To iterate over the List
         T IEnumerator<T>.Current => Get(currentIndex);
-
+        // To iterate over the List
         object IEnumerator.Current => Get(currentIndex)!;
 
 
@@ -140,7 +140,7 @@ namespace VoidMainAPI
             Sort(array);
         }
 
-        // The most "what the fuck?" Method because there's no way to tell the compiler that they can be compared.
+        // Sort with Bubble sort
         private void Sort(T[] array)
         {
             try
@@ -256,17 +256,23 @@ namespace VoidMainAPI
             }
         }
 
+        // Iterator to iterate over the List
         IEnumerator<T> IEnumerable<T>.GetEnumerator() => this;
 
+        // Iterator to iterate over the List
         IEnumerator IEnumerable.GetEnumerator() => this;
+        
+        // Checks if the iterator can move ahead during range based iteration
         bool IEnumerator.MoveNext()
         {
             ++currentIndex;
             return currentIndex < count;
         }
 
+        // Reset the iterator
         void IEnumerator.Reset() => currentIndex = -1;
 
+        // I do not know what it exactly does but let us assume it resets iterator on garbage collection
         void IDisposable.Dispose() => currentIndex = -1;
     }
 }
